@@ -105,13 +105,13 @@ function App() {
     const initializeAudio = () => {
       if (audioRef.current) {
         audioRef.current.volume = 0.3; // Set volume to 30%
-        
+
         const handleCanPlay = () => {
           setAudioError(false);
           setAudioLoaded(true);
           console.log('Audio is ready to play');
         };
-        
+
         const handleError = (e) => {
           setAudioError(true);
           setAudioLoaded(false);
@@ -168,7 +168,7 @@ function App() {
     setTimeout(() => {
       setShowInvitation(true);
       setIsTransitioning(false);
-      
+
       // Try to auto-play after transition
       setTimeout(() => {
         if (audioRef.current && !audioError && audioLoaded) {
@@ -201,7 +201,7 @@ function App() {
         // Play the music
         audioRef.current.currentTime = 0; // Reset to beginning
         const playPromise = audioRef.current.play();
-        
+
         if (playPromise !== undefined) {
           await playPromise;
           console.log('Music started by user');
@@ -210,7 +210,7 @@ function App() {
     } catch (error) {
       console.error('Toggle music failed:', error);
       setAudioError(true);
-      
+
       // Show user-friendly error message
       if (error.name === 'NotAllowedError') {
         console.log('Play prevented by browser policy - user gesture required');
@@ -422,7 +422,7 @@ function App() {
       ? 'opacity-100 transform translate-y-0'
       : 'opacity-0 transform translate-y-10'
       }`}>
-      
+
       {/* Background Audio - Only rendered when invitation is shown */}
       <audio
         ref={audioRef}
@@ -441,16 +441,15 @@ function App() {
       <div className="fixed bottom-4 right-4 z-40">
         <button
           onClick={toggleMusic}
-          className={`p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 ${
-            isPlaying 
-              ? 'bg-green-600 text-white hover:bg-green-500' 
+          className={`p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 ${isPlaying
+              ? 'bg-green-600 text-white hover:bg-green-500'
               : 'bg-gray-800 text-white hover:bg-gray-700'
-          } ${(audioError || !audioLoaded) ? 'opacity-50 cursor-not-allowed' : ''}`}
+            } ${(audioError || !audioLoaded) ? 'opacity-50 cursor-not-allowed' : ''}`}
           title={
-            audioError 
-              ? 'Audio not available' 
-              : !audioLoaded 
-                ? 'Loading audio...' 
+            audioError
+              ? 'Audio not available'
+              : !audioLoaded
+                ? 'Loading audio...'
                 : (isPlaying ? 'Pause Music' : 'Play Music')
           }
           disabled={audioError || !audioLoaded}
@@ -736,67 +735,70 @@ function App() {
         </div>
       </section>
 
-      {/* HEALTH PROTOCOL */}
+      {/* WEDDING PROTOCOL */}
       <section className="py-10 bg-gradient-to-b from-gray-200 to-white">
         <div className="max-w-xs md:max-w-2xl mx-auto px-4 md:px-6">
           <h2 className="text-center text-xl md:text-2xl font-bold text-gray-900 mb-8">
-            Health Protocol
+            Wedding Protocol
           </h2>
 
-          {/* Health Protocol Icons */}
+          {/* Protocol Icons */}
           <div className="grid grid-cols-5 gap-4 md:gap-8 mb-8">
-            {/* Hand Wash */}
+
+            {/* Dress Code */}
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-100 rounded-full flex items-center justify-center mb-2 shadow-sm">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3V1m0 18v2m8-10a4 4 0 00-4-4V3a2 2 0 012-2h4a2 2 0 012 2v4a4 4 0 00-4 4z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7l8-4 8 4v6a8 8 0 01-16 0V7z" />
                 </svg>
               </div>
-              <p className="text-xs md:text-sm text-gray-700 font-medium">Hand Wash</p>
+              <p className="text-xs md:text-sm text-gray-700 font-medium">Dress Code</p>
             </div>
 
-            {/* Face Mask */}
+            {/* No Phones */}
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-100 rounded-full flex items-center justify-center mb-2 shadow-sm">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405m-2.833 0L9 10m0 0L4.5 5.5m4.5 4.5l6.5 6.5M4 4l16 16" />
                 </svg>
               </div>
-              <p className="text-xs md:text-sm text-gray-700 font-medium">Use Face-mask</p>
+              <p className="text-xs md:text-sm text-gray-700 font-medium">No Phones</p>
             </div>
 
-            {/* Social Distancing */}
+            {/* RSVP Required */}
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-100 rounded-full flex items-center justify-center mb-2 shadow-sm">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26L21 8m-18 8h18V8H3v8z" />
                 </svg>
               </div>
-              <p className="text-xs md:text-sm text-gray-700 font-medium">Social Distancing</p>
+              <p className="text-xs md:text-sm text-gray-700 font-medium">RSVP Required</p>
             </div>
 
-            {/* No Contact */}
+            {/* Arrival Time */}
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-100 rounded-full flex items-center justify-center mb-2 shadow-sm">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18 21l-5.586-5.586m0 0L11 14l-1.414-1.414M5.636 5.636L7.05 4.222" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <p className="text-xs md:text-sm text-gray-700 font-medium">No Contact</p>
+              <p className="text-xs md:text-sm text-gray-700 font-medium">Arrival Time</p>
             </div>
 
-            {/* No Crowd */}
+            {/* No Plus-One */}
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-100 rounded-full flex items-center justify-center mb-2 shadow-sm">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2m0-6a3 3 0 11-6 0 3 3 0 016 0zm-8 0a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <p className="text-xs md:text-sm text-gray-700 font-medium">No Crowd</p>
+              <p className="text-xs md:text-sm text-gray-700 font-medium">No Plus-One</p>
             </div>
+
           </div>
         </div>
       </section>
+
 
       {/* RSVP & WISHES */}
       <section className="py-10 bg-gradient-to-b from-white to-gray-100">
