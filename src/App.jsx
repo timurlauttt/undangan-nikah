@@ -442,8 +442,8 @@ function App() {
         <button
           onClick={toggleMusic}
           className={`p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 ${isPlaying
-              ? 'bg-green-600 text-white hover:bg-green-500'
-              : 'bg-gray-800 text-white hover:bg-gray-700'
+            ? 'bg-green-600 text-white hover:bg-green-500'
+            : 'bg-gray-800 text-white hover:bg-gray-700'
             } ${(audioError || !audioLoaded) ? 'opacity-50 cursor-not-allowed' : ''}`}
           title={
             audioError
@@ -940,6 +940,12 @@ function App() {
           </p>
         </div>
       </footer>
+      <div className="h-auto flex flex-col items-center justify-center text-black py-3">
+        <p className="text-sm font-semibold mb-2 text-center">
+          {new Date().getFullYear()} <br />
+          <span className="font-bold">@timurlauttt</span>
+        </p>
+      </div>
     </div>
   );
 }
